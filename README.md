@@ -9,7 +9,7 @@ Received message:
 
 DLC | ID | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7
 --- | -- | -- | -- | -- | -- | -- | -- | -- | --
- 8  | B4 | SW | 00 | 00 | 00 | 00 | 00 | 00 | 00
+ 8  | C4 | SW | 00 | 00 | 00 | 00 | 00 | 00 | 00
 
 Schematic:
 ![Imgur](https://i.imgur.com/RZJDw0Z.png)
