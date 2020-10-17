@@ -11,8 +11,6 @@
 
 #define _XTAL_FREQ 20000000 //20MHz external crystal
 
-void printRxMessage(void); //function to print CAN message
-
 uCAN_MSG rxMessage;
 
 void main(void) {
@@ -22,15 +20,18 @@ void main(void) {
     
     while(1){
         if (CAN_receive(&rxMessage)) {
-        printRxMessage();
+            if (rxMessage.frame.idType == dSTANDARD_CAN_MSG_ID_2_0B && rxMessage.frame.id == 0xC4) {
+                RC4 = rxMessage.frame.data0 & 0b00000001; //set LED to message state
+//                printf("ID: %X ", rxMessage.frame.id); //print message id to serial terminal
+//                printf("DATA: %02X ", rxMessage.frame.data0); //print message data 0 to serial terminal
+//                printf("%02X ", rxMessage.frame.data1); //print message data 1 to serial terminal
+//                printf("%02X ", rxMessage.frame.data2); //print message data 2 to serial terminal
+//                printf("%02X ", rxMessage.frame.data3); //print message data 3 to serial terminal
+//                printf("%02X ", rxMessage.frame.data4); //print message data 4 to serial terminal
+//                printf("%02X ", rxMessage.frame.data5); //print message data 5 to serial terminal
+//                printf("%02X ", rxMessage.frame.data6); //print message data 6 to serial terminal
+//                printf("%02X\n", rxMessage.frame.data7); //print message data 7 to serial terminal
+            }
         }
     }
-}
-
-void printRxMessage(void) {
-    char canBuff[20]; //buffer for message data
-    if (rxMessage.frame.idType == dSTANDARD_CAN_MSG_ID_2_0B && rxMessage.frame.id == 0xB4) {
-        printf("DATA = %X\n", rxMessage.frame.data0); //print message data to serial terminal
-        RC4 = (rxMessage.frame.data0); //set LED to message state
- }
 }
